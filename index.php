@@ -5,7 +5,6 @@
 ?>
 <?php 
 	error_reporting(0);
-	$cur_date = date('Y-m-d');
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$attend = $_POST['attend'];
 		$insertattend = $stu->insertAttendance($attend);
@@ -28,7 +27,7 @@
 
 			<div class="card-body">
 				<div class="card bg-light text-center mb-3">
-					<h4 class="m-0 py-3"><strong>Date</strong>: <?php echo $cur_date; ?></h4>
+					<h4 class="m-0 py-3"><strong>Date and Time</strong>: <span id="currentDateTime"></span></h4>
 				</div>
 				<form action="" method="post">
 					<table class="table table-striped">
@@ -67,3 +66,6 @@
 		</div>
 	</div>
 <?php include "inc/footer.php"; ?>
+<script>
+document.getElementById('currentDateTime').innerText = new Date().toLocaleString();
+</script>
