@@ -79,12 +79,23 @@ class Student{
 			return $msg;
 		}
 	}
+	public function deleteAttendanceByDate($date) {
+        $query = "DELETE FROM tbl_attendance WHERE att_time = '$date'";
+        $deleteData = $this->db->delete($query);
+        if ($deleteData) {
+            $msg = "<div class='alert alert-success'>Attendance data deleted successfully!</div>";
+            return $msg;
+        } else {
+            $msg = "<div class='alert alert-danger'>Failed to delete attendance data!</div>";
+            return $msg;
+        }
+    }
 
-	public function getDateList(){
-		$query = "SELECT DISTINCT att_time FROM tbl_attendance";
-		$result = $this->db->select($query);
-		return $result;
-	}
+    public function getDateList() {
+        $query = "SELECT DISTINCT att_time FROM tbl_attendance ORDER BY att_time DESC";
+        $result = $this->db->select($query);
+        return $result;
+    }
 
 	public function getAllData($dt){
 		$date = $this->fm->validation($dt);
